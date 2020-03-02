@@ -5,8 +5,15 @@
   <body>
     <div>
         <h1><a href="">My first</a></h1>
-        <p>Hi Hi Hi Hi 안녕하고 말할만큼</p>
-        <p>Take Me High High High High 나를 좀 더 데려가 줘</p>
     </div>
+
+    {% for post in posts %}
+        <div>
+            <p>publish: {{post.published_date}}</p>
+            <h1><a href="">{{post.title}}</a></h1>
+            <p>{{post.text|linebreaksbr}}</p>
+        </div>
+    {% endfor %}
+
   </body>
 </html>
