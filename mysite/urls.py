@@ -26,5 +26,4 @@ urlpatterns = [
     url(r'', include('blog.urls')),
     url(r'', include('accounts.urls')),
     url(r'^accounts/', include('allauth.urls')),  # <- 추가
-
 ]
