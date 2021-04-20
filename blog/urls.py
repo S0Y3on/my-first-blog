@@ -12,6 +12,7 @@ urlpatterns = [
     path('post/new/', views.post_new, name='post_new'),
     path('post/<int:pk>/edit/', views.post_edit, name='post_edit'),
     url(r'^post/(?P<pk>\d+)/remove/$', views.post_remove, name='post_remove'),
+    path('accounts/', include('allauth.urls')),
 
 ]
 
