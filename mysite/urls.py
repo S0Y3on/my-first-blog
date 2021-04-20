@@ -25,7 +25,7 @@ urlpatterns = [
 #    url(r'^accounts/login/$', LoginView.as_view(), name='login'),
 #    url(r'^accounts/logout/$', LogoutView.as_view(), name='logout', kwargs={'redirect_field_name': '/'}),
     url(r'', include('blog.urls')),
-    path(r'', include('accounts.urls')),
+    # path(r'', include('accounts.urls')),
     path('accounts/', include('allauth.urls')),
     # url(r'^accounts/', include('allauth.urls')),  # <- 추가
 ]
