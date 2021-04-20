@@ -25,4 +25,6 @@ urlpatterns = [
 #    url(r'^accounts/logout/$', LogoutView.as_view(), name='logout', kwargs={'redirect_field_name': '/'}),
     url(r'', include('blog.urls')),
     url(r'', include('accounts.urls')),
+    url(r'^accounts/', include('allauth.urls')),  # <- 추가
+
 ]

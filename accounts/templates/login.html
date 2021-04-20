@@ -4,8 +4,9 @@
 
 <div class="container">
     <h1>login</h1>
-    <form method="post" action="{% url 'login' %}">
+    <form method="post" action="{% url 'account_login' %}">
         {% csrf_token %}
+        {% include "form_errors.html" %}
         Username:
         <br>
         <input type="text" name="username">

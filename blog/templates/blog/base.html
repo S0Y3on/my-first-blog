@@ -8,10 +8,6 @@
       <link href="https://fonts.googleapis.com/css2?family=Song+Myung&display=swap" rel="stylesheet">
       <link rel="stylesheet" href="{% static 'css/blog.css' %}">
       <style>
-        p {
-          font-family: 'Song Myung', serif;
-          font-size: 23px;
-        }
         h1 {
           font-family: 'Song Myung', serif;
         }
@@ -22,10 +18,10 @@
       <div class="page-header">
           {% if user.is_authenticated %}
               <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
-              <p class="top-menu">Hello {{ user.username }} <small>(<a href="{% url 'logout' %}">Log out</a>)</small></p>
+              <p class="top-menu">Hello {{ user.username }} <small>(<a href="{% url 'account_logout' %}">Log out</a>)</small></p>
           {% else %}
-              <a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a>
-              <a href="{% url 'signup' %}" class="top-menu"><span class="glyphicon glyphicon-plus-sign"></span></a>
+              <a href="{% url 'account_login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a>
+              <a href="{% url 'account_signup' %}" class="top-menu"><span class="glyphicon glyphicon-plus-sign"></span></a>
 
           {% endif %}
           <h1><a href="/">Soy3on's blog</a>
