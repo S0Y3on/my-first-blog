@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.contrib import auth
 from django.shortcuts import redirect
+from django.contrib.auth import get_user_model
 
 
 def signup(request):
@@ -30,6 +31,9 @@ def login(request):
         return render(request, 'login.html')
 
 
-def logout(request):
-    auth.logout(request)
-    return redirect('/')
+def user_list(request):
+    User = get_user_model()
+    users = User.objects.all()
+
+    return render(request, 'user_list.html', {'users':users})
+    # auth.logout(request)
