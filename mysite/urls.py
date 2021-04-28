@@ -21,7 +21,8 @@ from django.contrib.auth.views import LogoutView
 from django.contrib.auth import views
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    url(r'^admin/setting/', include('accounts.urls')),
+    url('admin/', admin.site.urls),
 #    url(r'^accounts/login/$', LoginView.as_view(), name='login'),
 #    url(r'^accounts/logout/$', LogoutView.as_view(), name='logout', kwargs={'redirect_field_name': '/'}),
     url(r'', include('blog.urls')),
