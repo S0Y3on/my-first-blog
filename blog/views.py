@@ -1,9 +1,11 @@
+from django.db.models import Q
 from django.shortcuts import render
 from django.utils import timezone
 from .models import Post
 
 from django.shortcuts import render, get_object_or_404
 from .forms import PostForm
+from .forms import PostSearchForm
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 # Create your views here.
@@ -53,3 +55,23 @@ def post_remove(request, pk):
     post = get_object_or_404(Post, pk=pk)
     post.delete()
     return redirect('post_list')
+
+def post_search(request):
+    form = PostSearchForm(request.GET)
+    context = {}
+    context['form'] = form
+
+    if form.is_valid():
+        searchWord = form.cleaned_data['search_word']
+        posts = Post.objects.filter(Q(title__contains=searchWord) | Q(text__contains=searchWord)).distinct()
+        context['search_term'] = searchWord
+        context['object_list'] = posts
+
+    return render(request, 'blog/post_search.html', context)
+
+    # return render(request, 'blog/post_list.html', {'posts': posts})
+    # return render(request, 'blog/post_search.html', {'posts': posts})
+
+
+def post_test(request):
+    return render(request, 'blog/post_test.html')

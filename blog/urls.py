@@ -11,6 +11,8 @@ urlpatterns = [
     path('post/<int:pk>/', views.post_detail, name='post_detail'),
     path('post/new/', views.post_new, name='post_new'),
     path('post/<int:pk>/edit/', views.post_edit, name='post_edit'),
+    path('post_search', views.post_search, name='post_search'),
+    path('post_test', views.post_test, name='post_test'),
     url(r'^post/(?P<pk>\d+)/remove/$', views.post_remove, name='post_remove'),
     # path(r'', include('accounts.urls')),
     path('accounts/', include('allauth.urls')),
