@@ -10,6 +10,12 @@ from .forms import PostForm
 from .forms import PostSearchForm
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
+
+from django.shortcuts import render,redirect
+from django.http import HttpResponse
+from lxml import etree
+import requests
+
 # Create your views here.
 
 
@@ -91,3 +97,21 @@ def post_search(request):
 @csrf_exempt
 def post_test(request):
     return render(request, 'blog/post_test.html')
+
+
+@csrf_exempt
+def index(request):
+    return render(request, 'blog/xxe_test.html')
+
+
+@csrf_exempt
+def result(request):
+    name = request.POST["data"]
+    try:
+        parser = etree.XMLParser(load_dtd=True,  no_network=False,  resolve_entities=True)
+        name = etree.fromstring(name, parser)
+    except etree.XMLSyntaxError as e:
+        print("[ Error Log ] : %s \n\n"%e )
+        return None
+    name = name.text
+    return render(request, 'blog/result.html', {'name': name} )

@@ -1,0 +1,75 @@
+{% extends 'blog/base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-wdith, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content= "ie=edge">
+    <title>Hello World Template</title>
+</head>
+{% block content %}
+<body>
+    <script>
+        var csrftoken;
+        var req;
+        function payload(){
+
+            var name = document.getElementById('name');
+            var xml = '<?xml version="1.0"?>' +
+                '<from>' + name.value + '</from>';
+
+            var form = document.createElement('form');
+            form.setAttribute('method', 'post');
+        	form.setAttribute('action', "http://soy3on.pythonanywhere.com/xxe_result");
+            document.charset = "utf-8";
+            var csrf = document.createElement('input');
+            csrf.setAttribute('type','hidden');
+            csrf.setAttribute('name', 'csrfmiddlewaretoken');
+            csrf.setAttribute('value',csrftoken);
+
+            form.appendChild(csrf);
+
+            var hiddenField = document.createElement('input');
+    		hiddenField.setAttribute('type', 'hidden');
+    		hiddenField.setAttribute('name',"data");
+    		hiddenField.setAttribute('value', xml);
+    		form.appendChild(hiddenField);
+
+    		document.body.appendChild(form);
+
+        	form.submit();
+
+        }
+
+        function getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        csrftoken = getCookie('csrftoken');
+
+    </script>
+
+    <h1>heellllllllllllo!</h1>
+
+    {% csrf_token %}
+    <label for= "name">name: </label>
+    <input id= "name" name= "name" type="text">
+    <input type="submit" value="submit" onclick="payload();">
+
+
+
+</body>
+</html>
+{% endblock %}

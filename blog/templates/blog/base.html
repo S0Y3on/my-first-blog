@@ -21,14 +21,13 @@
               <p class="top-menu">Hello {{ user.username }} <small>(<a href="{% url 'account_logout' %}">Log out</a>)</small></p>
               <a href="{% url 'post_search' %}" class="top-menu"><span class="glyphicon glyphicon-search"></span> </a>
               <a href="{% url 'post_test' %}" class="top-menu"><span class="glyphicon glyphicon-film"></span> </a>
-
+              <a href="{% url 'xxe_index' %}" class="top-menu"><span class="glyphicon glyphicon-flash"></span> </a>
           {% else %}
               <a href="{% url 'account_login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a>
               <a href="{% url 'account_signup' %}" class="top-menu"><span class="glyphicon glyphicon-plus-sign"></span></a>
               <a href="{% url 'post_search' %}" class="top-menu"><span class="glyphicon glyphicon-search"></span> </a>
               <a href="{% url 'post_test' %}" class="top-menu"><span class="glyphicon glyphicon-film"></span> </a>
-
-
+              <a href="{% url 'xxe_index' %}" class="top-menu"><span class="glyphicon glyphicon-flash"></span> </a>
 
           {% endif %}
           <h1><a href="/">Soy3on's blog</a>
